@@ -21,4 +21,8 @@ task :start do
   sh "jekyll --server"
 end
 
+task :check do
+  sh "jekyll --no-server --no-auto"
+end
+
 task :default => :start
