@@ -184,9 +184,9 @@ body {
   background-color: #ffffff;
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: normal;
-  line-height: 18px;
+  line-height: 27px;
   color: #404040;
 }
 .container {
@@ -390,13 +390,13 @@ a:hover {
  * Headings, body text, lists, code, and more for a versatile and durable typography system
  * ---------------------------------------------------------------------------------------- */
 p {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: normal;
-  line-height: 18px;
-  margin-bottom: 9px;
+  line-height: 27px;
+  margin-bottom: 13.5px;
 }
 p small {
-  font-size: 11px;
+  font-size: 14px;
   color: #bfbfbf;
 }
 h1,
@@ -417,16 +417,16 @@ h6 small {
   color: #bfbfbf;
 }
 h1 {
-  margin-bottom: 18px;
+  margin-bottom: 27px;
   font-size: 30px;
-  line-height: 36px;
+  line-height: 54px;
 }
 h1 small {
   font-size: 18px;
 }
 h2 {
   font-size: 24px;
-  line-height: 36px;
+  line-height: 54px;
 }
 h2 small {
   font-size: 14px;
@@ -435,7 +435,7 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 36px;
+  line-height: 54px;
 }
 h3 {
   font-size: 18px;
@@ -458,7 +458,7 @@ h6 {
   text-transform: uppercase;
 }
 ul, ol {
-  margin: 0 0 18px 25px;
+  margin: 0 0 27px 25px;
 }
 ul ul,
 ul ol,
@@ -473,7 +473,7 @@ ol {
   list-style: decimal;
 }
 li {
-  line-height: 18px;
+  line-height: 27px;
   color: #808080;
 }
 ul.unstyled {
@@ -481,16 +481,16 @@ ul.unstyled {
   margin-left: 0;
 }
 dl {
-  margin-bottom: 18px;
+  margin-bottom: 27px;
 }
 dl dt, dl dd {
-  line-height: 18px;
+  line-height: 27px;
 }
 dl dt {
   font-weight: bold;
 }
 dl dd {
-  margin-left: 9px;
+  margin-left: 13.5px;
 }
 hr {
   margin: 20px 0 19px;
@@ -510,21 +510,21 @@ em {
   color: #bfbfbf;
 }
 blockquote {
-  margin-bottom: 18px;
+  margin-bottom: 27px;
   border-left: 5px solid #eee;
   padding-left: 15px;
 }
 blockquote p {
   font-size: 14px;
   font-weight: 300;
-  line-height: 18px;
+  line-height: 27px;
   margin-bottom: 0;
 }
 blockquote small {
   display: block;
   font-size: 12px;
   font-weight: 300;
-  line-height: 18px;
+  line-height: 27px;
   color: #bfbfbf;
 }
 blockquote small:before {
@@ -532,8 +532,8 @@ blockquote small:before {
 }
 address {
   display: block;
-  line-height: 18px;
-  margin-bottom: 18px;
+  line-height: 27px;
+  margin-bottom: 27px;
 }
 code, pre {
   padding: 0 3px 2px;
@@ -551,9 +551,9 @@ code {
 pre {
   background-color: #f5f5f5;
   display: block;
-  padding: 8.5px;
-  margin: 0 0 18px;
-  line-height: 18px;
+  padding: 13px;
+  margin: 0 0 27px;
+  line-height: 27px;
   font-size: 12px;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -568,16 +568,16 @@ pre {
  * Base styles for various input types, form layouts, and states
  * ------------------------------------------------------------- */
 form {
-  margin-bottom: 18px;
+  margin-bottom: 27px;
 }
 fieldset {
-  margin-bottom: 18px;
-  padding-top: 18px;
+  margin-bottom: 27px;
+  padding-top: 27px;
 }
 fieldset legend {
   display: block;
   padding-left: 150px;
-  font-size: 19.5px;
+  font-size: 24px;
   line-height: 1;
   color: #404040;
   *padding: 0 0 5px 145px;
@@ -588,7 +588,7 @@ fieldset legend {
 
 }
 form .clearfix {
-  margin-bottom: 18px;
+  margin-bottom: 27px;
   zoom: 1;
 }
 form .clearfix:before, form .clearfix:after {
@@ -610,8 +610,8 @@ textarea {
 }
 label {
   padding-top: 6px;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 27px;
   float: left;
   width: 130px;
   text-align: right;
@@ -629,10 +629,10 @@ select,
 .uneditable-input {
   display: inline-block;
   width: 210px;
-  height: 18px;
+  height: 27px;
   padding: 4px;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 27px;
   color: #808080;
   border: 1px solid #ccc;
   -webkit-border-radius: 3px;
@@ -667,9 +667,9 @@ input[type=button], input[type=reset], input[type=submit] {
   height: auto;
 }
 select, input[type=file] {
-  height: 27px;
+  height: 40.5px;
   *height: auto;
-  line-height: 27px;
+  line-height: 40.5px;
   *margin-top: 4px;
   /* For IE7, add top margin to align select with labels */
 
@@ -920,9 +920,9 @@ textarea[readonly] {
 }
 .actions {
   background: #f5f5f5;
-  margin-top: 18px;
-  margin-bottom: 18px;
-  padding: 17px 20px 18px 150px;
+  margin-top: 27px;
+  margin-bottom: 27px;
+  padding: 26px 20px 27px 150px;
   border-top: 1px solid #ddd;
   -webkit-border-radius: 0 0 3px 3px;
   -moz-border-radius: 0 0 3px 3px;
@@ -938,8 +938,8 @@ textarea[readonly] {
   text-decoration: underline;
 }
 .help-inline, .help-block {
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 27px;
   color: #bfbfbf;
 }
 .help-inline {
@@ -1024,7 +1024,7 @@ textarea[readonly] {
   width: auto;
   padding: 0;
   margin-left: 20px;
-  line-height: 18px;
+  line-height: 27px;
   text-align: left;
   white-space: normal;
 }
@@ -1032,7 +1032,7 @@ textarea[readonly] {
   color: #808080;
 }
 .inputs-list label small {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: normal;
 }
 .inputs-list .inputs-list {
@@ -1055,7 +1055,7 @@ textarea[readonly] {
   padding-left: 20px;
 }
 .form-stacked fieldset {
-  padding-top: 9px;
+  padding-top: 13.5px;
 }
 .form-stacked legend {
   padding-left: 0;
@@ -1070,7 +1070,7 @@ textarea[readonly] {
   padding-top: 0;
 }
 .form-stacked .clearfix {
-  margin-bottom: 9px;
+  margin-bottom: 13.5px;
 }
 .form-stacked .clearfix div.input {
   margin-left: 0;
@@ -1102,14 +1102,14 @@ textarea[readonly] {
  * ---------------------------------------- */
 table {
   width: 100%;
-  margin-bottom: 18px;
+  margin-bottom: 27px;
   padding: 0;
-  font-size: 13px;
+  font-size: 16px;
   border-collapse: collapse;
 }
 table th, table td {
   padding: 10px 10px 9px;
-  line-height: 18px;
+  line-height: 27px;
   text-align: left;
 }
 table th {
@@ -1632,7 +1632,7 @@ a.menu:after, .dropdown-toggle:after {
   display: block;
 }
 .tabs, .pills {
-  margin: 0 0 18px;
+  margin: 0 0 27px;
   padding: 0;
   list-style: none;
   zoom: 1;
@@ -1666,7 +1666,7 @@ a.menu:after, .dropdown-toggle:after {
 .tabs > li > a {
   padding: 0 15px;
   margin-right: 2px;
-  line-height: 34px;
+  line-height: 52px;
   border: 1px solid transparent;
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
@@ -1733,7 +1733,7 @@ a.menu:after, .dropdown-toggle:after {
 }
 .breadcrumb {
   padding: 7px 14px;
-  margin: 0 0 18px;
+  margin: 0 0 27px;
   background-color: #f5f5f5;
   background-repeat: repeat-x;
   background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#f5f5f5));
@@ -1780,22 +1780,22 @@ a.menu:after, .dropdown-toggle:after {
 .hero-unit p {
   font-size: 18px;
   font-weight: 200;
-  line-height: 27px;
+  line-height: 40.5px;
 }
 footer {
-  margin-top: 17px;
-  padding-top: 17px;
+  margin-top: 26px;
+  padding-top: 26px;
   border-top: 1px solid #eee;
 }
 .page-header {
-  margin-bottom: 17px;
+  margin-bottom: 26px;
   border-bottom: 1px solid #ddd;
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 .page-header h1 {
-  margin-bottom: 8px;
+  margin-bottom: 12.5px;
 }
 .btn.danger,
 .alert-message.danger,
@@ -1882,7 +1882,7 @@ footer {
   padding: 5px 14px 6px;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   color: #333;
-  font-size: 13px;
+  font-size: 16px;
   line-height: normal;
   border: 1px solid #ccc;
   border-bottom-color: #bbb;
@@ -1952,7 +1952,7 @@ footer {
   box-shadow: none;
 }
 .btn.large {
-  font-size: 15px;
+  font-size: 18px;
   line-height: normal;
   padding: 9px 14px 9px;
   -webkit-border-radius: 6px;
@@ -1961,7 +1961,7 @@ footer {
 }
 .btn.small {
   padding: 7px 9px 7px;
-  font-size: 11px;
+  font-size: 14px;
 }
 :root .alert-message, :root .btn {
   border-radius: 0 \0;
@@ -1975,7 +1975,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   color: #000000;
   font-size: 20px;
   font-weight: bold;
-  line-height: 13.5px;
+  line-height: 20.25px;
   text-shadow: 0 1px 0 #ffffff;
   filter: alpha(opacity=25);
   -khtml-opacity: 0.25;
@@ -1993,7 +1993,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 .alert-message {
   position: relative;
   padding: 7px 15px;
-  margin-bottom: 18px;
+  margin-bottom: 27px;
   color: #404040;
   background-color: #eedc94;
   background-repeat: repeat-x;
@@ -2033,7 +2033,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   color: #ffffff;
 }
 .alert-message h5 {
-  line-height: 18px;
+  line-height: 27px;
 }
 .alert-message p {
   margin-bottom: 0;
@@ -2093,8 +2093,8 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   color: #404040;
 }
 .pagination {
-  height: 36px;
-  margin: 18px 0;
+  height: 54px;
+  margin: 27px 0;
 }
 .pagination ul {
   float: left;
@@ -2114,7 +2114,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 .pagination a {
   float: left;
   padding: 0 14px;
-  line-height: 34px;
+  line-height: 52px;
   border-right: 1px solid;
   border-right-color: #ddd;
   border-right-color: rgba(0, 0, 0, 0.15);
@@ -2403,7 +2403,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 }
 .label {
   padding: 1px 3px 2px;
-  font-size: 9.75px;
+  font-size: 12px;
   font-weight: bold;
   color: #ffffff;
   text-transform: uppercase;
@@ -2444,7 +2444,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 .media-grid a {
   float: left;
   padding: 4px;
-  margin: 0 0 18px 20px;
+  margin: 0 0 27px 20px;
   border: 1px solid #ddd;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
