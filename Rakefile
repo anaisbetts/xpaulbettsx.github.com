@@ -18,7 +18,7 @@ end
 
 desc "Startup Jekyll"
 task :start do
-  sh "jekyll --server --pygments --safe""
+  sh "jekyll --server --pygments --safe"
 end
 
 task :check do
