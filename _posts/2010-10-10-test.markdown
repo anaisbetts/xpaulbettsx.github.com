@@ -14,8 +14,6 @@ This wasn't always the feeling. When it first launched and I booted up the start
 
 They haven't happened.
 
-{% gist 1027674 gist_tag.rb %}
-
 ##WiiAppStore
 
 With Nintendo taking a fresh new approach to gaming, I had hoped that part of that approach would be to open up the Wii home screen to developers, to let them user your TV in a way we've never had before. Streaming video, mounting and viewing content from your home computer, mini games, mini apps, internet apps, maybe even full-blown TV over time. In hindsight, one could imagine the Wii having its own AppStore. They already have a concept of downloading classic games, with a billing infrastructure already in place. But as far as I can tell, the system remains closed, enslaving the consumer mainly to physical disks and Nintendo-ordained solutions.

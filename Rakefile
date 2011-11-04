@@ -18,11 +18,11 @@ end
 
 desc "Startup Jekyll"
 task :start do
-  sh "jekyll --server"
+  sh "jekyll --server --pygments --safe""
 end
 
 task :check do
-  sh "jekyll --no-server --no-auto"
+  sh "jekyll --no-server --no-auto --pygments --safe"
 end
 
 task :default => :start
