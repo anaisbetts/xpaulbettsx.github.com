@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://yoursite.com/2010/01/wii-failure</loc>
+        <lastmod>2011-12-27T16:43:33-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://yoursite.com/about.html</loc>
+        <lastmod>2011-12-27T16:38:53-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://yoursite.com/</loc>
+        <lastmod>2011-12-27T16:43:33-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://yoursite.com/screencasts.html</loc>
+        <lastmod>2011-12-27T16:38:53-05:00</lastmod>
+    </url>
+</urlset>

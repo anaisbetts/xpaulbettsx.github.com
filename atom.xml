@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Zach Holman</title>
+ <link href="http://zachholman.com/atom.xml" rel="self"/>
+ <link href="http://zachholman.com/"/>
+ <updated>2011-12-27T16:57:12-05:00</updated>
+ <id>http://zachholman.com</id>
+ <author>
+   <name>Zach Holman</name>
+ </author>
+ 
+ 
+ <entry>
+   <title>WiiFailure™</title>
+   <link href="http://zachholman.com/2010/01/wii-failure"/>
+   <updated>2010-10-10T00:00:00-04:00</updated>
+   <id>http://zachholman.com/2010/01/test</id>
+   <content type="html">&lt;p&gt;The Wii is a terribly interesting device. Unimpressive hardware, non-breakthrough game design, overtly simplistic. Yet the Wii has &lt;a href=&quot;http://en.wikipedia.org/wiki/Console_wars#Worldwide_sales_figures_5&quot;&gt;sold roughly the same as the 360 and PS3 combined&lt;/a&gt;. From the onset, Nintendo nailed the prediction that they would be seriously outgunned in an arms race. Pushing more bits faster would doom them, so they more or less invented — or at least revolutionized — casual gaming. That clears them from becoming fodder for Microsoft and Sony&amp;rsquo;s battle and gives them a huge space to stretch out in their new sphere. It also opens them up to new competition from new faces.&lt;/p&gt;
+
+&lt;h2&gt;Change You Could Believe In&lt;/h2&gt;
+
+&lt;p&gt;I picked up my Wii near launch date (after a few months of battling starved supply). It was a lot of fun; Zelda was one of the finest games on any platform, Resident Evil 4 — a port — still was fun using motion technology, and casual gaming like WarioWare, MarioKart, and WiiSports rounded out the lineup. What I quickly discovered, however, was that my serious gaming shifted to my newly-purchased 360, and my casual gaming dried up. There&amp;rsquo;s only so many frames you can virtually bowl before you decide that maybe real bowling could be fun, too. In effect, there wasn&amp;rsquo;t enough movement in the casual gaming sphere, at least for me and my immediate and extended families, to pour as many hours into the Wii as we did in the initial few years post-launch. I have not touched my Wii in a year.&lt;/p&gt;
+
+&lt;p&gt;This wasn&amp;rsquo;t always the feeling. When it first launched and I booted up the start screen, you saw all those smooth, white blank application icon squares on the home screen. As a developer, I immediately thought of two things: that, tied with an open API, developers could supply a consistently-fresh experience straight to your TV; and that the Apple-reminescent UI eagerly awaited some kind of Apple-Nintendo integration.&lt;/p&gt;
+
+&lt;p&gt;They haven&amp;rsquo;t happened.&lt;/p&gt;
+
+&lt;div&gt;&lt;script src='https://gist.github.com/1027674.js?file=gist_tag.rb'&gt;&lt;/script&gt;
+&lt;noscript&gt;&lt;pre&gt;&lt;code&gt;require 'cgi'
+require 'digest/md5'
+require 'net/https'
+require 'uri'
+
+module Jekyll
+  class GistTag &amp;lt; Liquid::Tag
+    def initialize(tag_name, text, token)
+      super
+      @text           = text
+      @cache_disabled = false
+      @cache_folder   = File.expand_path &amp;quot;../_gist_cache&amp;quot;, File.dirname(__FILE__)
+      FileUtils.mkdir_p @cache_folder
+    end
+
+    def render(context)
+      if parts = @text.match(/([\d]*) (.*)/)
+        gist, file = parts[1].strip, parts[2].strip
+        script_url = script_url_for gist, file
+        code       = get_cached_gist(gist, file) || get_gist_from_web(gist, file)
+        html_output_for script_url, code
+      else
+        &amp;quot;&amp;quot;
+      end
+    end
+
+    def html_output_for(script_url, code)
+      code = CGI.escapeHTML code
+      &amp;quot;&amp;lt;script src='#{script_url}'&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;div&amp;gt;&amp;lt;noscript&amp;gt;&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;#{code}&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/noscript&amp;gt;&amp;lt;/div&amp;gt;&amp;quot;
+    end
+
+    def script_url_for(gist_id, filename)
+      &amp;quot;https://gist.github.com/#{gist_id}.js?file=#{filename}&amp;quot;
+    end
+
+    def get_gist_url_for(gist, file)
+      &amp;quot;https://raw.github.com/gist/#{gist}/#{file}&amp;quot;
+    end
+
+    def cache(gist, file, data)
+      cache_file = get_cache_file_for gist, file
+      File.open(cache_file, &amp;quot;w&amp;quot;) do |io|
+        io.write data
+      end
+    end
+
+    def get_cached_gist(gist, file)
+      return nil if @cache_disabled
+      cache_file = get_cache_file_for gist, file
+      File.read cache_file if File.exist? cache_file
+    end
+
+    def get_cache_file_for(gist, file)
+      bad_chars = /[^a-zA-Z0-9\-_.]/
+      gist      = gist.gsub bad_chars, ''
+      file      = file.gsub bad_chars, ''
+      md5       = Digest::MD5.hexdigest &amp;quot;#{gist}-#{file}&amp;quot;
+      File.join @cache_folder, &amp;quot;#{gist}-#{file}-#{md5}.cache&amp;quot;
+    end
+
+    def get_gist_from_web(gist, file)
+      gist_url          = get_gist_url_for gist, file
+      raw_uri           = URI.parse gist_url
+      https             = Net::HTTP.new raw_uri.host, raw_uri.port
+      https.use_ssl     = true
+      https.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request           = Net::HTTP::Get.new raw_uri.request_uri
+      data              = https.request request
+      data              = data.body
+      cache gist, file, data unless @cache_disabled
+      data
+    end
+  end
+
+  class GistTagNoCache &amp;lt; GistTag
+    def initialize(tag_name, text, token)
+      super
+      @cache_disabled = true
+    end
+  end
+end
+
+Liquid::Template.register_tag('gist', Jekyll::GistTag)
+Liquid::Template.register_tag('gistnocache', Jekyll::GistTagNoCache)&lt;/code&gt;&lt;/pre&gt;&lt;/noscript&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;WiiAppStore&lt;/h2&gt;
+
+&lt;p&gt;With Nintendo taking a fresh new approach to gaming, I had hoped that part of that approach would be to open up the Wii home screen to developers, to let them user your TV in a way we&amp;rsquo;ve never had before. Streaming video, mounting and viewing content from your home computer, mini games, mini apps, internet apps, maybe even full-blown TV over time. In hindsight, one could imagine the Wii having its own AppStore. They already have a concept of downloading classic games, with a billing infrastructure already in place. But as far as I can tell, the system remains closed, enslaving the consumer mainly to physical disks and Nintendo-ordained solutions.&lt;/p&gt;
+
+&lt;h2&gt;WiiTV&lt;/h2&gt;
+
+&lt;p&gt;Along those lines, I was hoping for more integration with existing systems, like iTunes or Windows Media Center streaming. In effect, this changes your strictly-casual gaming experience into a true convergence box, one the likes of which Bill Gates was clamoring for fifteen years ago. Stream your music, movies, documents, whatever you&amp;rsquo;d like, straight to your TV. On top of that, you have a familiar device to control it all: the Wii Remote. Similarly, its intuitive motion control puts Nintendo in a position that other gaming companies would be harder-pressed to emulate (try having your grandma play a movie with a PS3 controller compared to Nintendo&amp;rsquo;s offering, for example). You end up with a small, simple system that can play your digital content on your TV in addition to allowing people of all ages to play fun, social, casual games with an intuitive controller.&lt;/p&gt;
+
+&lt;p&gt;This all seems very familiar to me.&lt;/p&gt;
+
+&lt;h2&gt;Apple&lt;/h2&gt;
+
+&lt;p&gt;The Apple TV is a flop. (I measure &amp;ldquo;flop&amp;rdquo; strictly in terms of fanboy-strokes-per-second, which, judging from the Apple rumor boards and blogs, is comparatively at an all-time low.) The recent &lt;a href=&quot;http://www.apple.com/appletv/&quot;&gt;Apple TV 3.0&lt;/a&gt; update is cool and all, but doesn&amp;rsquo;t solve any real core problems with the device. It solves the streaming content problem, but there just isn&amp;rsquo;t anything &lt;em&gt;more&lt;/em&gt;. It lacks in two specific areas: television, and casual gaming.&lt;/p&gt;
+
+&lt;p&gt;Casual gaming is within reach. Without any insider knowledge, it wouldn&amp;rsquo;t be outlandish for an objective outsider to surmise that, between the AppStore&amp;rsquo;s past success, vague Tablet/AppStore tie-in rumors in the future, and today&amp;rsquo;s Apple TV, Apple&amp;rsquo;s got some notion of how they might pull everything together for your fat home media setup, too. If they do have some sort of Apple TV AppStore in the works, it&amp;rsquo;s going to place an awful amount of stress directly on Nintendo&amp;rsquo;s shoulders. Once that happens, you end up with a small, simple system that can play your digital content on your TV in addition to allowing people of all ages to play fun, social, casual games with an intuitive controller (in this case, the iPhone itself). Having a DVR baked-in would be a &amp;ldquo;nice to have&amp;rdquo;, but at this point we already have a compelling system that at least offers very real competition to Nintendo&amp;rsquo;s core market.&lt;/p&gt;
+
+&lt;p&gt;This has already happened once before. Case in point: the iPhone has already done this to the Nintendo DS. Whereas a few short years ago I was seriously considering buying a DS for its innovative, not-totally-serious gameplay (&lt;a href=&quot;http://en.wikipedia.org/wiki/Scribblenauts&quot;&gt;Scribblenauts&lt;/a&gt; is still one of the most intriguing games I&amp;rsquo;ve ever seen), today I would almost find that notion offensive if only for the idea that I&amp;rsquo;d have to carry around another physical device. I&amp;rsquo;ve already consolidated my camera, my iPod, and my laptop into my iPhone; why would I ever want to reverse that trend? I don&amp;rsquo;t think it&amp;rsquo;s shocking to suggest that the days of the dedicated gaming device are numbered. Market reality backs this up, too: Nintendo&amp;rsquo;s recently been &lt;a href=&quot;http://www.sfgate.com/cgi-bin/blogs/techchron/detail?&amp;amp;entry_id=50566&quot;&gt;facing 50% drops in net profit&lt;/a&gt; due to lagging Wii and DS sales.&lt;/p&gt;
+
+&lt;h2&gt;Casual Mobile Immersive Graphical Hotness&lt;/h2&gt;
+
+&lt;p&gt;In many ways, this shows the volatility of the fickle gaming market. From Atari&amp;rsquo;s start to Nintendo&amp;rsquo;s dominance, from Sony&amp;rsquo;s reign to Microsoft&amp;rsquo;s successful entry, from Nintendo&amp;rsquo;s huge comeback to the next newcomer, perhaps. A lot has happened in the last few decades. The funny part of it is that we all know what&amp;rsquo;s going to happen: things are going to get more integrated, more mobile, more cutting edge, more casual. But everyone&amp;rsquo;s coming at it differently: Apple and Nintendo are going casual-mobile, Sony&amp;rsquo;s throwing high tech at the problem, and Microsoft&amp;rsquo;s gunning for some kooky &lt;a href=&quot;http://www.xbox.com/en-US/live/projectnatal/&quot;&gt;full-body immersion&lt;/a&gt;. You could probably make an argument that everyone is headed in the right direction, but who&amp;rsquo;s going to get there first is another question entirely.c&lt;/p&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>
