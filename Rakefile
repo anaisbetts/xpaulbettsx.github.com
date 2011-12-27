@@ -28,7 +28,12 @@ task :check do
 end
 
 task :deploy do
+  sh "rm -rf #{RootDir}/.deploy && mkdir #{RootDir}/.deploy"
   sh "jekyll #{RootDir}/.deploy --no-server --no-auto --pygments"
+  sh "rm -rf #{RootDir}/.deploy_prod"
+  sh "git clone git@github.com:xpaulbettsx/xpaulbettsx.github.com.git #{RootDir}/.deploy_prod"
+  sh "rsync -avlp --delete --exclude=.git #{RootDir}/.deploy/ #{RootDir}/.deploy_prod"
+  sh "cd #{RootDir}/.deploy_prod && git add . && git ci -m \"Publish on `date`\" && git push"
 end
 
 task :default => :start
